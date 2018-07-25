@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>挂单</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/custom.css">
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+
+</head>
+<body class="sell-page">
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-dropdown" aria-expanded="false">
+	        	<span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#"><img src="./img/logo.jpeg" style="height:40px;"></a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
+	      <ul class="nav navbar-nav">
+	        <li><a href="index.html">首页</a></li>
+	        <li><a href="sell.html">挂单</a></li>
+	        <li><a href="help.html">帮助</a></li>
+	        <li><a href="about-us.html">关于我们</a></li>
+
+	      </ul>
+
+	    <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language fa-lg"></i> 简体中文 <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+	      			<li><a >简体中文</a></li>
+	      			<li><a>ENGLISH</a></li>
+	      		</ul>
+	        </li>
+        </ul>
+
+      	<form class="navbar-form navbar-right">
+	        <div class="form-group">
+	          <input type="text" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	        </div>
+
+      	</form>
+   
+	    </div><!-- /.navbar-collapse -->
+
+	</div>
+</nav>
+
+
+<!-- main -->
+<div id="main">
+	<div class="container">
+
+		<div class="row">
+			<div class="alert alert-danger alert-dismissable" role="alert">
+				<button class="close" type="button" data-dismiss="alert">&times;</button>
+				请先安装Scatter插件
+			</div>
+		</div>
+
+		<div class="row tips">
+			<div class="col-md-12 text-left">
+				<dl>
+					<dt>发布挂单信息</dt>
+					<dd>挂单信息需要用户填写卖出的账号名，收款账号名以及广告费。其中广告费随用户输入，首页中的挂单列表将根据用户支付的广告费的多少来排序显示</dd>
+				</dl>
+			</div>
+		</div>
+
+		<div class="row steps">
+			<div class="row step1 ">
+				<div class="col-md-8 col-md-offset-2 outer-step">
+					<div class="col-md-3 step-title">卖出账号名</div>
+					<div class="col-md-9">
+						<input class="form-control" type="text" placeholder="卖出账号">
+						<span class="help-block">请确保您拥有此账户的owner权限，并且在scatter中配置了此账户的私钥</span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row step2 ">
+				<div class="col-md-8 col-md-offset-2 outer-step">
+					<div class="col-md-3 step-title">收款账号名</div>
+					<div class="col-md-9">
+						<input class="form-control" type="text" placeholder="收款账号">
+						<span class="help-block">请确保您拥有此账户的active权限，并且在scatter中配置了此账户的私钥</span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row step3 ">
+				<div class="col-md-8 col-md-offset-2 outer-step">
+					<div class="col-md-3 step-title">卖出价格</div>
+					<div class="col-md-9">
+						<input class="form-control" type="text" placeholder="标价不得少于 0.1000 EOS">
+						<span class="help-block">买家将根据您在此处设置的价格来完成支付，您的收款账户将收到这笔付款</span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row step4 ">
+				<div class="col-md-8 col-md-offset-2 outer-step">
+					<div class="col-md-3 step-title">广告费</div>
+					<div class="col-md-9">
+						<input class="form-control" type="text" placeholder="广告费不得少于 0.1000 EOS">
+						<span class="help-block">首页交易列表中将根据您设置的广告费来完成排序</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row step5 ">
+				<div class="col-md-8 col-md-offset-2 text-right">
+					<button class="btn btn-success btn-lg" href="#">挂单发布</button>
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<!-- main end -->
+
+
+<!-- footer -->
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-sm-4">
+				
+				<dl>
+					<dt>Bidname</dt>
+					<dd style="width:23rem;">Bidname 是一个提供区块链场外交易(OTC)和币币交易的平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</dd>
+					<dd><br /></dd>
+					<dd>Copyright@2018 Lvyii</dd>
+				</dl>
+			</div>
+
+			<div class="col-md-4 col-sm-4">
+				<dl>
+					<dt>联系我们</dt>
+					<dd><i class="fa fa-telegram"></i> telegram</dd>
+					<dd><i class="fa fa-wechat"></i> 微信</dd>
+					<dd><i class="fa fa-qq"></i> QQ群</dd>
+					<dd><i class="fa fa-envelope"></i> 邮箱</dd>
+					<dd><i class="fa fa-envelope"></i> 商务合作</dd>
+				</dl>
+			</div>
+
+			<div class="col-md-2 col-sm-4">
+				<dl>
+					<dt>友情链接</dt>
+					<dd><a href="">eosfans</a></dd>
+					<dd><a href="">eos90s</a></dd>
+					<dd><a href="">eosmonitor</a></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- footer end-->
+
+
+
+<script>
+    
+</script>
+</body>
+</html>

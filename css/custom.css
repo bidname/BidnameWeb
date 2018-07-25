@@ -1,0 +1,24 @@
+body{background: #fbfbfb;}
+.footer{background: #f2f2f2;padding: 3rem 0 1rem 0;}
+.footer,.footer a{color: rgba(74,74,74,0.69);}
+.footer dt{color:#6b6b6b;}
+.footer dd{margin: 0.4rem 0;}
+.navbar{padding: 1rem 0;}
+.search-input{width: 18rem !important;}
+#main td{vertical-align: middle;}
+#main{padding: 1rem 0 2em 0;}
+.click-button{text-align: center;padding: 1rem;background: #eaeaea;     margin-bottom: 2rem;}
+.tips,.scatter-warning{text-align: center;background: #f3a011;color:white;    padding: 2rem;    margin-bottom: 3rem;}
+.tips{color:black;background: #e8e8e8;}
+.sell-page .tips,.sell-page .scatter-warning{margin-bottom: 1rem;}
+.sell-page .tips dt{margin-bottom: 0.7rem;}
+.sell-page .steps .help-block {color:#ff990d;}
+.step-title{border-left:4px solid #25a210;}
+.outer-step{border-bottom: 1px solid #e4e2e2;}
+.step1,.step2,.step3,.step4{margin:3rem 0 1.5rem 0;}
+#buy-modal  .help-block{color:red !important;}
+#account-name,#account-price{color:#ff8e0d;}
+#buy-modal .modal-body{padding:2rem 3rem;}
+#buy-modal .mess{border: 1px solid #ccc;border-radius: 4px;    margin-bottom: 1rem; padding: 1rem 0;}
+.modal-body p{text-align: center;margin-top: 2rem;}
+#sub{padding: 10px 38px;}
