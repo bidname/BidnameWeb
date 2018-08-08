@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/ladda-themeless.min.css">
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-
+    <script src="./i18n/jquery.i18n.properties.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"
+    integrity="sha512-vNyLnOEb7uFmEtVbLnyZQ9/k4zckM2Vu3jJOKq6XfWEVZG0yKcjDExVN4EQ7e3F+rePWRncMolI2xFi/3qo62A=="
+    crossorigin="anonymous"></script>
+    <script src="./js/custom.js"></script>
+    <script src="./js/interaction.js"></script>
+    <script src="./js/spin.min.js"></script>
+	<script src="./js/ladda.min.js"></script>     
+	
 
 </head>
-<body>
+<body id="home-page">
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -32,6 +41,7 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="index.html">首页</a></li>
 	        <li><a href="sell.html">挂单</a></li>
+	        <li><a href="my_orders.html">我的订单</a></li>
 	        <li><a href="help.html">帮助</a></li>
 	        <li><a href="about-us.html">关于我们</a></li>
 
@@ -47,9 +57,9 @@
 	        </li>
         </ul>
 
-      	<form class="navbar-form navbar-right">
+      	<form class="navbar-form navbar-right" method='get' action='search.html'>
 	        <div class="form-group">
-	          <input type="text" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	          <input type="text" name="acc" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
 	        </div>
 
       	</form>
@@ -59,14 +69,18 @@
 	</div>
 </nav>
 
-
+<!--
+ <h3 class="i18n" name="msg_hello">I18N Bundles</h3>
+ <br />
+<h3 class="i18n" name="msg_complex"></h3>
+-->
 <!-- main -->
 <div id="main">
 	<div class="container">
-		<div class="row">
+		<div class="row scatter-warning">
 			<div class="alert alert-danger alert-dismissable" role="alert">
 				<button class="close" type="button" data-dismiss="alert">&times;</button>
-				请先安装Scatter插件
+				请先安装<a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank">Scatter插件</a>
 			</div>
 		</div>
 
@@ -75,11 +89,14 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-8  index-list-title" >
-				<b>交易列表</b>
-			</div>
+			
 
 			<div class="col-md-8">
+
+				<div class="index-list-title" >
+					<b>交易列表</b>
+				</div>
+
 				<table class="table table-striped table-hover">
 					<thead>
 				     	<tr>
@@ -91,179 +108,38 @@
 				     	</tr>
 				    </thead>
 
-				    <tbody>
-					     <tr>
-					       <td>maguofeng315</td>
-					       <td>123.1000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(1)">购买</button></td>
-					     </tr>
+				    <tbody id='acc_list'>
 					     
-					     <tr>
-					       <td>qqqqqqqqqqqq</td>
-					       <td>123.2000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(2)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gongdongdong</td>
-					       <td>123.3000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(3)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gqzdkmzuhege</td>
-					       <td>123.4000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(4)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>ae5555555555</td>
-					       <td>123.5000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(5)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gy2dgmbzgege</td>
-					       <td>123.6000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(6)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>zxzhouxi5111</td>
-					       <td>123.7000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(7)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>bergbergberg</td>
-					       <td>123.8000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(8)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>yangyon12345</td>
-					       <td>123.9000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(9)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>zhang1125112</td>
-					       <td>123.1000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(10)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>firsttime123</td>
-					       <td>123.1100</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(11)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>duanwen44444</td>
-					       <td>123.1200</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(12)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gy4tgnbzgmge</td>
-					       <td>123.1300</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(13)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>eosbankaaaaa</td>
-					       <td>123.1400</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(14)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gi3teojygage</td>
-					       <td>123.1500</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(15)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gi3teojygage</td>
-					       <td>123.1600</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(16)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gi3teojygage</td>
-					       <td>123.1700</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(17)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gi3teojygage</td>
-					       <td>123.1800</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(18)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>weihaining55</td>
-					       <td>123.1900</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(19)">购买</button></td>
-					     </tr>
-
-					     <tr>
-					       <td>gi3teojygage</td>
-					       <td>123.2000</td>
-					       <td>0.5000</td>
-					       <td>2018-07-20</td>
-					       <td><button type="button" class="btn btn-primary" onclick="buy(20)">购买</button></td>
-					     </tr>
 				    </tbody>
 
 
 				</table>
 
 				<div class='click-button'>
-					<button class="btn btn-default" type="button">上一页</button>
-					<button class="btn btn-default" type="button">下一页</button>
+					<button class="btn btn-default prev"  type="button">上一页</button>
+					<button class="btn btn-default next ladda-button" data-style="expand-right" type="button">下一页</button>
 				</div>
 
 
 			</div>
 			<div class="col-md-4">
+				
+				
+				<div class="panel panel-info account-panel">
+					
+					<div class="panel-heading"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i> Scatter当前登录账户</div>
+					<div class="panel-body">
+						<button type="button" class="btn btn-warning btn-lg col-md-12 login-button">登录Scatter</button>
+							
+					</div>
+					<ul class="list-group" id='account-info'>
+
+					</ul>
+					
+				</div>
+				
+
+
 				<div class="panel panel-default">
 					<div class="panel-heading"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i> 常见问题</div>
 					<ul class="list-group">
@@ -339,11 +215,13 @@
             		<div class="col-md-6">价格：<b id="account-price"></b></div>
             	</div>
             	<div class="row">
+            		<input type="hidden" name="order-id">
+            		<input type="hidden" name="buyer-acc-name" class="form-control buyer-acc-name" >
             		<input type="text" name="public-key" class="form-control pub-key" placeholder="请输入新的公钥">
             		<span class="help-block">请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
             	</div>
             	<div class="row">
-            		<div class="text-right">不知道如何生成密钥对？<a href="" target="_blank">点击此处获取工具</a></div>
+            		<div class="text-right">不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" target="_blank">点击此处获取工具</a></div>
             	</div>
                 <p><button class='btn btn-primary btn-lg' id="sub">确认购买</button></p>
             </div>
@@ -353,13 +231,7 @@
 </div><!-- /.modal -->
 
 <script>
-	function buy(num){
-		const tem = $("#main table tr").eq(num);
-		$("#account-name").text(tem.find("td").eq(0).text());
-		$("#account-price").text(tem.find("td").eq(1).text());
-		$(".pub-key").val("");
-		$("#buy-modal").modal();
-	}
+	
 
 </script>
 </body>

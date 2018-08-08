@@ -8,9 +8,9 @@ body{background: #fbfbfb;}
 #main td{vertical-align: middle;}
 #main{padding: 1rem 0 2em 0;}
 .click-button{text-align: center;padding: 1rem;background: #eaeaea;     margin-bottom: 2rem;}
-.tips,.scatter-warning{text-align: center;background: #f3a011;color:white;    padding: 2rem;    margin-bottom: 3rem;}
+.tips{text-align: center;background: #f3a011;color:white;    padding: 2rem;    margin-bottom: 3rem;}
 .tips{color:black;background: #e8e8e8;}
-.sell-page .tips,.sell-page .scatter-warning{margin-bottom: 1rem;}
+.sell-page .tips,.sell-page {margin-bottom: 1rem;}
 .sell-page .tips dt{margin-bottom: 0.7rem;}
 .sell-page .steps .help-block {color:#ff990d;}
 .step-title,.search-title{border-left:4px solid #25a210;}
@@ -30,3 +30,33 @@ body{background: #fbfbfb;}
 .sell-search-button-list{text-align: center;}
 .sell-search-button-list button{    padding-left: 55px;padding-right: 55px;}
 .index-list-title{border-bottom: 1px solid #DDD;margin: 1rem 0;padding: 1rem 0;font-size: 20px;}
+.buyer-acc-name{margin:-4px 0 7px 0;}
+.panel-body{display: none;}
+#account-info .badge{background: white;color:black;font-size:1.6rem;    font-weight: 300;}
+.account-panel{margin-top: 2rem;}
+.sell-page .account-panel,.search-page .account-panel{margin-top: 0;}
+#account-info .btn.badge{background: red;color: white;border-radius: 4px;border: #198e11;padding: 1px 9px;display: inline-block;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;}
+#account-info .btn.badge:hover{background: #c30303}
+#search_acc_list button{margin-right: 0.3rem; }
+.first-kind,.second-kind{display:none;}
+.second-kind.row,.first-kind.row{margin-right: 0;margin-left: 0;}
+.scatter-warning{display: none;}
+.dropdown-menu li{cursor:pointer;}
+.tips_login{display: none;}

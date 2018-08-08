@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>搜索</title>
+    <title>我的订单</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
@@ -19,7 +19,7 @@
 
 
 </head>
-<body id="search-page">
+<body id="my-orders">
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -38,7 +38,7 @@
 	      <ul class="nav navbar-nav">
 	        <li><a href="index.html">首页</a></li>
 	        <li><a href="sell.html">挂单</a></li>
-	        <li><a href="sell.html">我的订单</a></li>
+	        <li><a href="my_orders.html">我的订单</a></li>
 	        <li><a href="help.html">帮助</a></li>
 	        <li><a href="about-us.html">关于我们</a></li>
 
@@ -78,12 +78,12 @@
 		</div>
 
 		<div class="row">
-			<ol class="breadcrumb"><li>首页</li><li>搜索</li></ol>
+			<ol class="breadcrumb"><li>首页</li><li>我的订单（不包含已完成订单）</li></ol>
 		</div>
 
 		<div class="row">
 			<div class="col-md-8 left-container">
-
+				<div class='tips_login'>登陆Scatter后方能查看您的订单信息</div>
 				<div class="row search-title first-kind" >
 					<b>收款账户名相关订单信息</b>
 				</div>
@@ -127,7 +127,7 @@
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail acc-name">EOS123456789</b>
+								<b class="sell-search-detail acc-name"></b>
 							</div>
 
 							<div class="col-md-2">
@@ -135,7 +135,7 @@
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail sell-price">32.1122</b>
+								<b class="sell-search-detail sell-price"></b>
 							</div>
 						</div>
 
@@ -145,7 +145,7 @@
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail ad-fee">3.0000</b>
+								<b class="sell-search-detail ad-fee"></b>
 							</div>
 
 							<div class="col-md-2">
@@ -153,7 +153,7 @@
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail create-date">2018-10-12</b>
+								<b class="sell-search-detail create-date"></b>
 							</div>
 						</div>
 
@@ -162,14 +162,9 @@
 						</div>
 
 						<div class="row sell-search-button-list">
-							<div class="col-md-6">
-								<button class="btn btn-primary btn-lg">购买</button>
-							</div>
-
-							<div class="col-md-6">
-								<button class="btn btn-warning btn-lg">撤单</button>
-							</div>
-							
+							<div class="col-md-12">
+								<button class="btn btn-primary btn-lg">查询中……</button>
+							</div>							
 							
 						</div>
 
