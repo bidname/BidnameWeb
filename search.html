@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
     <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./i18n/jquery.i18n.properties.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"
@@ -36,27 +37,27 @@
 
 		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html">首页</a></li>
-	        <li><a href="sell.html">挂单</a></li>
-	        <li><a href="sell.html">我的订单</a></li>
-	        <li><a href="help.html">帮助</a></li>
-	        <li><a href="about-us.html">关于我们</a></li>
+	        <li><a href="index.html" class='i18n' fy='home_page'>首页</a></li>
+	        <li><a href="sell.html" class='i18n' fy='put_order'>挂单</a></li>
+	        <li><a href="my_orders.html" class='i18n' fy='my_orders'>我的订单</a></li>
+	        <li><a href="help.html" class='i18n' fy='help'>帮助</a></li>
+	        <li><a href="about-us.html" class='i18n' fy='about_us'>关于我们</a></li>
 
 	      </ul>
 
-	    <ul class="nav navbar-nav navbar-right">
+	    <ul class="nav navbar-nav navbar-right lan-change">
 	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language fa-lg"></i> 简体中文 <span class="caret"></span></a>
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language fa-lg"></i><span class=' tran-title'> 简体中文</span> <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-	      			<li><a >简体中文</a></li>
-	      			<li><a>ENGLISH</a></li>
+	      			<li lan='zh'><a >简体中文</a></li>
+	      			<li lan='en'><a>ENGLISH</a></li>
 	      		</ul>
 	        </li>
         </ul>
 
-      	<form class="navbar-form navbar-right" action="search.html" method="get">
+      	<form class="navbar-form navbar-right" method='get' action='search.html'>
 	        <div class="form-group">
-	          <input type="text" name="acc" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	          <input type="text" name="acc" class="form-control search-input i18n"  fy='input_account' placeholder="输入交易账户名或收款账户名">
 	        </div>
 
       	</form>
@@ -73,30 +74,30 @@
 		<div class="row scatter-warning">
 			<div class="alert alert-danger alert-dismissable" role="alert">
 				<button class="close" type="button" data-dismiss="alert">&times;</button>
-				请先安装<a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank">Scatter插件</a>
+				<span class ='i18n' fy='install_first'>请先安装</span><a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank" class ='i18n' fy='scatter_extension'>Scatter插件</a>
 			</div>
 		</div>
 
 		<div class="row">
-			<ol class="breadcrumb"><li>首页</li><li>搜索</li></ol>
+			<ol class="breadcrumb i18n" fy='home_page'><li>首页</li><li class='i18n' fy='search'>搜索</li></ol>
 		</div>
 
 		<div class="row">
 			<div class="col-md-8 left-container">
 
 				<div class="row search-title first-kind" >
-					<b>收款账户名相关订单信息</b>
+					<b class='i18n' fy='recep_acc_detail'>收款账户名相关订单信息</b>
 				</div>
 
 				<div class="row first-kind" >
 					<table class="table table-striped table-hover" id="search-null">
 						<thead>
 					     	<tr>
-						       <th>账户名</th>
-						       <th>价格（EOS）</th>
-						       <th>广告费（EOS）</th>
-						       <th>创建时间</th>
-						       <th>操作</th>
+						       <th class ='i18n' fy='account_name'>账户名</th>
+						       <th class ='i18n' fy='price'>价格（EOS）</th>
+						       <th class ='i18n' fy='ad_fee'>广告费（EOS）</th>
+						       <th class ='i18n' fy='create_time'>创建时间</th>
+						       <th class ='i18n' fy='actions'>操作</th>
 					     	</tr>
 					    </thead>
 
@@ -113,7 +114,7 @@
 				</div>
 
 				<div class="row search-title second-kind">
-						<b>已挂单账户订单信息</b>
+						<b class='i18n' fy='sell_acc_detail'>已挂单账户订单信息</b>
 					</div>
 
 				<div class="row second-kind">
@@ -122,38 +123,38 @@
 
 					<div class="row sell-search">
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='acc_name'>
 								账号名
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail acc-name">EOS123456789</b>
+								<b class="sell-search-detail acc-name"></b>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='price'>
 								价格（EOS）
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail sell-price">32.1122</b>
+								<b class="sell-search-detail sell-price"></b>
 							</div>
 						</div>
 
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='ad_fee'>
 								广告费（EOS）
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail ad-fee">3.0000</b>
+								<b class="sell-search-detail ad-fee"></b>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='create_time'>
 								创建时间
 							</div>
 
 							<div class="col-md-4">
-								<b class="sell-search-detail create-date">2018-10-12</b>
+								<b class="sell-search-detail create-date"></b>
 							</div>
 						</div>
 
@@ -163,11 +164,11 @@
 
 						<div class="row sell-search-button-list">
 							<div class="col-md-6">
-								<button class="btn btn-primary btn-lg">购买</button>
+								<button class="btn btn-primary btn-lg i18n" fy='place_order'>购买</button>
 							</div>
 
 							<div class="col-md-6">
-								<button class="btn btn-warning btn-lg">撤单</button>
+								<button class="btn btn-warning btn-lg i18n" fy='seller_revoke'>撤单</button>
 							</div>
 							
 							
@@ -184,38 +185,41 @@
 
 				<!-- right -->
 				<div class="col-md-4">
-
-					<div class="panel panel-info account-panel">
-						
-						<div class="panel-heading"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i> Scatter当前登录账户</div>
-						<div class="panel-body">
-							<button type="button" class="btn btn-warning btn-lg col-md-12 login-button">登录Scatter</button>
-								
-						</div>
-						<ul class="list-group" id='account-info'>
-
-						</ul>
-						
-					</div>
-					
-
-					<div class="panel panel-default">
-						<div class="panel-heading"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i> 常见问题</div>
-						<ul class="list-group">
-							<li class="list-group-item"><a href="">出售账号名（挂单）需要提供什么</a></li>
-							<li class="list-group-item"><a href="">购买账号名操作流程</a></li>
-							<li class="list-group-item"><a href="">出售账号名本质是什么</a></li>
-							<li class="list-group-item"><a href="">为什么卖家需要提供2个账号</a></li>
-							<li class="list-group-item"><a href="">密钥对是什么？</a></li>
-							<li class="list-group-item"><a href="">联系我们：微信323423</a></li>
-							<li class="list-group-item"><a href="">联系我们：Telegram</a></li>
-							<li class="list-group-item"><a href="">联系我们：QQ1234567</a></li>
-						</ul>
-
-					</div>
-
 				
+				
+				<div class="panel panel-info account-panel">
+					
+					<div class="panel-heading"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i> <span class ='i18n' fy='scatter_current_login'>Scatter当前登录账户</span></div>
+					<div class="panel-body">
+						<button type="button" class="btn btn-warning btn-lg col-md-12 login-button i18n" fy='login_scatter'>登录Scatter</button>
+							
+					</div>
+					<ul class="list-group" id='account-info'>
+
+					</ul>
+					
 				</div>
+				
+
+
+				<div class="panel panel-default">
+					<div class="panel-heading"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i><span class='i18n' fy='faq'> 常见问题</span></div>
+					<ul class="list-group">
+						<li class="list-group-item"><a href="">出售账号名（挂单）需要提供什么</a></li>
+						<li class="list-group-item"><a href="">购买账号名操作流程</a></li>
+						<li class="list-group-item"><a href="">出售账号名本质是什么</a></li>
+						<li class="list-group-item"><a href="">为什么卖家需要提供2个账号</a></li>
+						<li class="list-group-item"><a href="">密钥对是什么？</a></li>
+						<li class="list-group-item"><a href="">联系我们：微信323423</a></li>
+						<li class="list-group-item"><a href="">联系我们：Telegram</a></li>
+						<li class="list-group-item"><a href="">联系我们：QQ1234567</a></li>
+					</ul>
+
+				</div>
+
+			
+			</div>
+		</div>
 
 				<!-- right end-->
 
@@ -241,7 +245,7 @@
 				
 				<dl>
 					<dt>Bidname</dt>
-					<dd style="width:23rem;">Bidname 是一个提供区块链场外交易(OTC)和币币交易的平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</dd>
+					<dd style="width:23rem;"  class='i18n' fy='brief'>Bidname 是一个提供区块链场外交易(OTC)和币币交易的平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</dd>
 					<dd><br /></dd>
 					<dd>Copyright@2018 Lvyii</dd>
 				</dl>
@@ -249,18 +253,18 @@
 
 			<div class="col-md-4 col-sm-4">
 				<dl>
-					<dt>联系我们</dt>
-					<dd><i class="fa fa-telegram"></i> telegram</dd>
-					<dd><i class="fa fa-wechat"></i> 微信</dd>
-					<dd><i class="fa fa-qq"></i> QQ群</dd>
-					<dd><i class="fa fa-envelope"></i> 邮箱</dd>
-					<dd><i class="fa fa-envelope"></i> 商务合作</dd>
+					<dt class='i18n' fy='cantact_us'>联系我们</dt>
+					<dd><i class="fa fa-telegram" ></i>telegram</dd>
+					<dd><i class="fa fa-wechat" ></i><span class='i18n' fy='wechat'> 微信</span></dd>
+					<dd><i class="fa fa-qq" ></i><span class='i18n' fy='qq'> QQ群</span></dd>
+					<dd><i class="fa fa-envelope" ></i><span class='i18n' fy='email'>  邮箱</span></dd>
+					<dd><i class="fa fa-envelope" ></i><span class='i18n' fy='cooperation'>  商务合作</span></dd>
 				</dl>
 			</div>
 
 			<div class="col-md-2 col-sm-4">
 				<dl>
-					<dt>友情链接</dt>
+					<dt class='i18n' fy='friend_links'>友情链接</dt>
 					<dd><a href="">eosfans</a></dd>
 					<dd><a href="">eos90s</a></dd>
 					<dd><a href="">eosmonitor</a></dd>
@@ -277,23 +281,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">购买</h4>
+                <h4 class="modal-title i18n" fy='place_order'>购买下单</h4>
             </div>
             <div class="modal-body">
             	<div class="row mess" >
-            		<div class="col-md-6">购买账户名：<b id="account-name"></b></div>
-            		<div class="col-md-6">价格：<b id="account-price"></b></div>
+            		<div class="col-md-6"><span class="i18n" fy='buyer_account_name'>购买账户名：</span><b id="account-name"></b></div>
+            		<div class="col-md-6"><span class="i18n" fy='price'>价格：</span><b id="account-price"></b></div>
             	</div>
             	<div class="row">
             		<input type="hidden" name="order-id">
             		<input type="hidden" name="buyer-acc-name" class="form-control buyer-acc-name" >
             		<input type="text" name="public-key" class="form-control pub-key" placeholder="请输入新的公钥">
-            		<span class="help-block">请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
+            		<span class="help-block i18n" fy='publick_key_tips'>请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
             	</div>
             	<div class="row">
-            		<div class="text-right">不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" target="_blank">点击此处获取工具</a></div>
+            		<div class="text-right i18n" fy='how_to_generate_public_key'>不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" class='i18n' fy='click_here_to_generate' target="_blank">点击此处获取工具</a></div>
             	</div>
-                <p><button class='btn btn-primary btn-lg' id="sub">确认购买</button></p>
+                <p><button class='btn btn-primary btn-lg i18n' fy='confirm_purchase' id="sub">确认购买</button></p>
             </div>
 
         </div><!-- /.modal-content -->

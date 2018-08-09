@@ -10,7 +10,7 @@
 
 //线上测试
 
-
+ 
 const	network = {
     protocol:'https', // Defaults to https
     blockchain:'eos',
@@ -76,47 +76,6 @@ function buy(num,orderId){
 }
 
 
-updateAuth = async () => {
-
-    let identity = await this.scatter.getIdentity({ accounts:[this.network] })
-    let account = identity.accounts.find(acc => acc.blockchain === 'eos');
-    console.log('account=====>', account)
-    console.log('identity=====>', identity)
-
-    let eosaccount = await this.eos.getAccount(account.name)
-
-    console.log('eosaccount=====>',eosaccount.permissions[1].required_auth)
-    let keys = [
-      {
-        key: 'EOS7kGeQQUf4j6uofxjtdVf4dLgHL7SJD114HxGZ6krfo8GuXApr8',
-        weight: 1,
-      }
-    ]
-    eosaccount.permissions[1].required_auth.keys[0].key = 'EOS7kGeQQUf4j6uofxjtdVf4dLgHL7SJD114HxGZ6krfo8GuXApr8'
-    let newReqAuth = {
-      accounts: [],
-      keys: keys,
-      threshold: 1,
-      waits: []
-    }
-
-    let newAuth = {
-      "account": eosaccount.account_name,
-      "permission": 'owner',
-      "parent": "",
-      "auth": eosaccount.permissions[1].required_auth
-    }
-
-    console.log('newReqAuth=====>',newReqAuth)
-
-    try{
-      let returnMessage = await this.eos.updateauth(newAuth)
-      console.log('returnMessage=====>',returnMessage)
-    }catch(err){
-      console.log(err)
-    }
-
-  }
 
 
 //认证权限
@@ -124,24 +83,24 @@ updateAuth = async () => {
 async function checkLogin(accName,	permission = 'active'){
 //todo  先获取scatter的信息
 
-	scatter.authenticate().then(async sig =>{
+	await scatter.authenticate().then(async sig =>{//这里不加await会导致捕捉不到异常
 	
-		 scatter.getIdentity({ accounts:[network] }).then(identity=>
+		 await scatter.getIdentity({ accounts:[network] }).then(identity=>
 			{
 
 				let account = identity.accounts.find(acc => acc.blockchain === 'eos')
 
 				if(account.name != accName || account.authority != permission){
-					throw new Error(`Scatter请使用拥有：${accName}@${permission} 权限的账户登录（右侧边栏可以点击切换Scatter账户）`)
+					throw new Error($.i18n.prop("login_transfer",accName,permission))
 				}else{
 					return true;
 				}
 			},err=>{
-				throw new Error('无法获取到您的Scatter登录信息')
+				throw new Error($.i18n.prop('cannot_get_scatter_info'))
 			})
 
 	},err=>{
-		throw new Error('请先登录Scatter')
+		throw new Error($.i18n.prop('login_first'))
 	})
 
 }
@@ -217,9 +176,9 @@ async function assignOrCancelCodePer( account_name, assignOrCancel = 'assign', p
       	let returnMessage = await eos.updateauth(newAuth, options)
       	console.log('returnMessage=====>',returnMessage)
       	if(assignOrCancel == 'assign'){
-      		alert('授权成功')
+      		alert($.i18n.prop('auth_success'))
       	}else{
-      		alert('取消授权成功')
+      		alert($.i18n.prop('cancel_auth_success'))
       	}
 
       	return true;
@@ -231,15 +190,15 @@ async function assignOrCancelCodePer( account_name, assignOrCancel = 'assign', p
       	if(typeof err == 'object'){
       		if(assignOrCancel == 'assign'){
       			if(err.type === 'signature_rejected'){
-	      			alert('您拒绝了“授权”，授权失败')
-	      				      		}else{
-	      			alert(`【授权失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+	      			alert($.i18n.prop('scatter_reject_auth_fail'))
+	      		}else{
+	      			alert($.i18n.prop('auth_fail_detail', err.code, err.message))
 	      		}
       		}else{
       			if(err.type === 'signature_rejected'){
-      			alert('您拒绝了“取消授权”，取消授权失败')
+      				alert($.i18n.prop('scater_reject_cancel_auth_fail'))
 	      		}else{
-	      			alert(`【取消授权失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+	      			alert($.i18n.prop('cancel_auth_fail_detail', err.code, err.message))
 	      		}
       		}
 
@@ -249,9 +208,9 @@ async function assignOrCancelCodePer( account_name, assignOrCancel = 'assign', p
       		const errObj	=	JSON.parse(err);
 	      	const code 		=	errObj.error.code;
 	      	if(assignOrCancel == 'assign'){
-	      		alert(`【授权失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+	      		alert($.i18n.prop('auth_fail_detail_kind2', code, errObj.error.what , errObj.error.details[0].message))
 	      	}else{
-	      		alert(`【取消授权失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+	      		alert($.i18n.prop('cancel_auth_fail_detail_kind2', code, errObj.error.what, errObj.error.details[0].message))
 	      	}
 			
 			console.log(errObj.error.what)
@@ -260,9 +219,9 @@ async function assignOrCancelCodePer( account_name, assignOrCancel = 'assign', p
       	
 
       	if(assignOrCancel == 'assign'){
-      		throw new Error('授权失败')
+      		throw new Error($.i18n.prop('auth_failed'))
       	}else{
-      		throw new Error('取消授权失败')
+      		throw new Error($.i18n.prop('cancel_auth_failed'))
       	}
       	
     }
@@ -274,7 +233,7 @@ async function getFormatAccountInfo({name,authority}){
 	console.log('name--',name,'---authority---',authority)
 	let eosaccount = await eos.getAccount(name);
 	const balance	=	eosaccount.core_liquid_balance ? eosaccount.core_liquid_balance : 0;
-	let assginStr	=	`<li class="list-group-item">未授权合约Code权限<button class="btn btn-warning badge assignPer" onclick="assignPer('${eosaccount.account_name}','assign', '${authority}')">点击授权</button></li>`;
+	let assginStr	=	`<li class="list-group-item">${$.i18n.prop('unauthorized_code')}<button class="btn btn-warning badge assignPer" onclick="assignPer('${eosaccount.account_name}','assign', '${authority}')">${$.i18n.prop('click_to_authorized_code')}</button></li>`;
 
 	let whichPer = '';
 
@@ -287,7 +246,7 @@ async function getFormatAccountInfo({name,authority}){
 
 	for(let acc of eosaccount.permissions[whichPer].required_auth.accounts){
     	if(acc.permission.actor === codeName && acc.permission.permission === 'eosio.code'){
-    		assginStr	=	`<li class="list-group-item">授权合约Code权限成功<button class="btn btn-warning badge cancelAssign" onclick="cancelAssign('${eosaccount.account_name}','cancel', '${authority}')">取消授权</button></li>`;
+    		assginStr	=	`<li class="list-group-item">${$.i18n.prop('authorized_code_success')}<button class="btn btn-warning badge cancelAssign" onclick="cancelAssign('${eosaccount.account_name}','cancel', '${authority}')">${$.i18n.prop('click_to_cancel_authorized_code')}</button></li>`;
     		break;
     		//return true;
     	}
@@ -295,12 +254,12 @@ async function getFormatAccountInfo({name,authority}){
 
 
 	let catStr	=	`
-	<li class="list-group-item"><span class="badge">当前账户与权限</span>${eosaccount.account_name}@${authority}</li>  ${assginStr}
-	<li class="list-group-item"><span class="badge">余额</span>${balance}</li>
-	<li class="list-group-item"><span class="badge">内存</span>${eosaccount.ram_quota} / ${eosaccount.ram_usage}</li>
+	<li class="list-group-item"><span class="badge">${$.i18n.prop('li_current_account_and_permission')}</span>${eosaccount.account_name}@${authority}</li>  ${assginStr}
+	<li class="list-group-item"><span class="badge">${$.i18n.prop('balance')}</span>${balance}</li>
+	<li class="list-group-item"><span class="badge">${$.i18n.prop('memory')}</span>${eosaccount.ram_quota} / ${eosaccount.ram_usage}</li>
 	<li class="list-group-item"><span class="badge">CPU</span>${eosaccount.cpu_limit.available} / ${eosaccount.cpu_limit.max} / ${eosaccount.cpu_limit.used}</li>
 	<li class="list-group-item"><span class="badge">NET</span>${eosaccount.net_limit.available} / ${eosaccount.net_limit.max} / ${eosaccount.net_limit.used}</li>
-	<li class="list-group-item" style="text-align:center;"><button type="button" class="btn btn-info logout-scatter" >退出Scatter</button> <button type="button" class="btn btn-info change-scatter" >切换Scatter账户</button></li>
+	<li class="list-group-item" style="text-align:center;"><button type="button" class="btn btn-info logout-scatter" >${$.i18n.prop('scatter_logout')}</button> <button type="button" class="btn btn-info change-scatter" >${$.i18n.prop('switch_scatter')}</button></li>
 	`;
 
 	$('#account-info').html(catStr)
@@ -357,7 +316,7 @@ async function getFormatAccountInfo({name,authority}){
 		Promise.all([p1, p2])
 		.then(result => {
 			 if(!isHaveResult){
-		   	 	$('.left-container').html('没有找到关于您的相关订单哦（已完成订单不显示）')
+		   	 	$('.left-container').html($.i18n.prop('not_found_your_order'))
 		   	 }
 		})
 		.catch(e => console.log(e));
@@ -409,7 +368,7 @@ function constructStr(data){
  				<td>${parseFloat(data.orderList[i].price.amount).toFixed(4)}</td>
  				<td>${parseFloat(data.orderList[i].adfee.amount).toFixed(4)}</td>
  				<td>${data.orderList[i].createdat.substring(0, 10)}</td>
- 				<td><button type="button" class="btn btn-primary" onclick="buy(${i*1 + 1},'${data.orderList[i]._id}')">购买</button></td>
+ 				<td><button type="button" class="btn btn-primary" onclick="buy(${i*1 + 1},'${data.orderList[i]._id}')">${$.i18n.prop('place_order')}</button></td>
  				</tr>`;
  		}
  		
@@ -426,9 +385,9 @@ function searchConstructStr(data){
  			let subStr 	=	'';
 
  			if(data[i].buyer){
- 				subStr 	=	`<button type="button" class="btn btn-warning sellerRevoke">卖家撤单</button><button type="button" class="btn btn-info buyerRevoke">买家撤单</button> <button type="button" class="btn btn-success transferName">过户</button>	`
+ 				subStr 	=	`<button type="button" class="btn btn-warning sellerRevoke">${$.i18n.prop('seller_revoke')}</button><button type="button" class="btn btn-info buyerRevoke">${$.i18n.prop('buyer_revoke')}</button> <button type="button" class="btn btn-success transferName">${$.i18n.prop('transfer_name')}</button>	`
  			}else{
- 				subStr 	=	`<button type="button" class="btn btn-primary" onclick="buy(${i*1 + 1},'${data[i]._id}')">购买</button><button type="button" class="btn btn-warning sellerRevoke">卖家撤单</button>`
+ 				subStr 	=	`<button type="button" class="btn btn-primary" onclick="buy(${i*1 + 1},'${data[i]._id}')">${$.i18n.prop('place_order')}</button><button type="button" class="btn btn-warning sellerRevoke">${$.i18n.prop('seller_revoke')}</button>`
  			}
  			
  			trList	+=	`<tr acc="${data[i].acc}" seller="${data[i].seller}" buyer="${data[i].buyer ? data[i].buyer  : ''}" order_id="${data[i]._id}">
@@ -456,25 +415,25 @@ function secondKindShow(data){
 
 	if(data[0].buyer){
 		temStr	=	`<div class="col-md-4">
-						<button class="btn btn-warning btn-lg sellerRevoke">卖家撤单</button>
+						<button class="btn btn-warning btn-lg sellerRevoke">${$.i18n.prop('seller_revoke')}</button>
 					</div>
 
 					<div class="col-md-4">
-						<button class="btn btn-info btn-lg buyerRevoke">买家撤单</button>
+						<button class="btn btn-info btn-lg buyerRevoke">${$.i18n.prop('buyer_revoke')}</button>
 					</div>
 
 					<div class="col-md-4">
-						<button class="btn btn-success btn-lg transferName">过户</button>
+						<button class="btn btn-success btn-lg transferName">${$.i18n.prop('transfer_name')}</button>
 					</div>
 					`;
 		
 	}else{
 		temStr	=	`<div class="col-md-6">
-						<button class="btn btn-primary btn-lg" onclick="buy(1, 1)">购买</button>
+						<button class="btn btn-primary btn-lg" onclick="buy(1, 1)">${$.i18n.prop('place_order')}</button>
 					</div>
 
 					<div class="col-md-6">
-						<button class="btn btn-warning btn-lg sellerRevoke">卖家撤单</button>
+						<button class="btn btn-warning btn-lg sellerRevoke">${$.i18n.prop('seller_revoke')}</button>
 					</div>`;
 	}
 
@@ -528,6 +487,9 @@ $(document).ready(function(){
 	setTimeout(function(){if(typeof scatter == 'undefined'){$('.scatter-warning').show();}},10000)
 	setTimeout(function(){if(scatter){$('.scatter-warning').hide();}},11000)//防止页面加载缓慢导致出的bug
 
+
+
+
 	//页面加载完成，初始化加载列表
 	if($('#home-page').length > 0){
 		showListFun(0)
@@ -578,7 +540,7 @@ $(document).ready(function(){
 		Promise.all([p1, p2])
 		.then(result => {
 			 if(!isHaveResult){
-		   	 	$('.left-container').html('没有查到相关的记录，您可以仔细核对信息后再次查询')
+		   	 	$('.left-container').html($.i18n.prop('not_found_related_items'))
 		   	 }
 		})
 		.catch(e => console.log(e)); 	
@@ -678,12 +640,12 @@ document.addEventListener('scatterLoaded',async scatterExtension => {
 		const permission  	=	'owner';
 
 		if(sellAccName.length > 12 || sellAccName.length < 3){
-			alert('卖出账号名长度应大于3位且少于13位');
+			alert($.i18n.prop('sell_acc_limit'));
 			return false;
 		}
 
 		if(receiptAccName.length > 12 || receiptAccName.length < 3){
-			alert('收款账号名长度应大于3位且少于13位');
+			alert($.i18n.prop('receipt_acc_limit'));
 			return false;
 		}
 
@@ -712,12 +674,12 @@ document.addEventListener('scatterLoaded',async scatterExtension => {
 
 	   		if(!isAlreadyAssign){
 	   			try{
-		   			const isAllowAssign = await window.confirm(`本操作需要您的此账户（${sellAccName}）赋给本合约Code权限，是否继续（您在操作完成后可随时点击右侧红色按钮取消授权）？`)
+		   			const isAllowAssign = await window.confirm($.i18n.prop('need_code_permission', sellAccName))
 		   			if(isAllowAssign){
 		   				await assignOrCancelCodePer(sellAccName, 'assign', permission, input_eosaccount) 
 		   				await getFormatAccountInfo({'name':sellAccName, 'authority':permission})
 		   			}else{
-		   				alert('您拒绝了授权本合约Code权限，操作结束')
+		   				alert($.i18n.prop('you_reject_auth_stop'))
 		   				return false;
 		   			}
 
@@ -730,19 +692,19 @@ document.addEventListener('scatterLoaded',async scatterExtension => {
 	   		bidnameContract.then(obj => {
 				obj.createorder(receiptAccName, sellAccName, sellPrice.toFixed(4) + ' EOS',adFee.toFixed(4) + ' EOS', options).then(val=>{
 					console.log("i am good!!!",val)
-					alert('恭喜，挂单成功')
+					alert($.i18n.prop('put_order_success'))
 				},err =>{
 
 					if(typeof err == 'object'){
 		      			if(err.type === 'signature_rejected'){
-		      				alert('您拒绝了“挂单发布”，挂单失败')
+		      				alert($.i18n.prop('you_reject_put_order_failed'))
 			      		}else{
-			      			alert(`【挂单发布失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+			      			alert($.i18n.prop('put_order_fail_detail', err.code, err.message))
 			      		}
 		      		}else{
 			      		const errObj	=	JSON.parse(err);
 				      	const code 		=	errObj.error.code;
-				      	alert(`【挂单发布失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+				      	alert($.i18n.prop('put_order_fail_detail_kind2', code, errObj.error.what, errObj.error.details[0].message))
 				      	
 						
 						console.log(errObj.error.what)
@@ -774,7 +736,7 @@ $('#sub').click(async function(){
 	const eos = scatter.eos( network, Eos, {}, network.protocol);
 
 	if(! reg1.test(publicKey)){
-		alert('公钥格式不正确，请填写有效的公钥（同时请保管好您跟此公钥对应的私钥，丢失无法找回！！）')
+		alert($.i18n.prop('public_key_format_err'))
 		return false;
 	}
 	
@@ -800,12 +762,12 @@ $('#sub').click(async function(){
 
    		if(!isAlreadyAssign){
    			try{
-	   			const isAllowAssign = await window.confirm(`本操作需要您的此账户（${buyerAccName}）赋给本合约Code权限，是否继续（您在操作完成后可随时点击右侧红色按钮取消授权）？`)
+	   			const isAllowAssign = await window.confirm($.i18n.prop('need_code_permission' ,buyerAccName))
 	   			if(isAllowAssign){
 	   				await assignOrCancelCodePer(buyerAccName, 'assign', permission, input_eosaccount) 
 	   				await getFormatAccountInfo({'name':buyerAccName, 'authority':permission})
 	   			}else{
-	   				alert('您拒绝了授权本合约Code权限，操作结束')
+	   				alert($.i18n.prop('you_reject_auth_stop'))
 	   				return false;
 	   			}
 
@@ -818,19 +780,19 @@ $('#sub').click(async function(){
    		bidnameContract.then(obj => {
 			obj.placeorder(accountName, buyerAccName, publicKey,options).then(val=>{
 			console.log(val) 
-			alert('恭喜，购买成功，此订单将在卖家完成过户操作后完成，您付款的EOS将暂存在合约中，您也可以随时取消该订单')
+			alert($.i18n.prop('purchase_success_info'))
 			},err =>{
 
 				if(typeof err == 'object'){
 	      			if(err.type === 'signature_rejected'){
-	      				alert('您拒绝了“确认购买”，购买失败')
+	      				alert($.i18n.prop('reject_purchase_failed'))
 		      		}else{
-		      			alert(`【确认购买失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+		      			alert($.i18n.prop('purchase_failed_detail', err.code, err.message))
 		      		}
 	      		}else{
 		      		const errObj	=	JSON.parse(err);
 			      	const code 		=	errObj.error.code;
-			      	alert(`【确认购买失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+			      	alert($.i18n.prop('purchase_failed_detail_kind2', code, errObj.error.what, errObj.error.details[0].message))
 			      	
 					
 					console.log(errObj.error.what)
@@ -880,26 +842,26 @@ $('.left-container').on('click','.sellerRevoke',async function(){
 
 	
 
-	if(window.confirm(`您真的要撤销该订单吗？`)){
+	if(window.confirm($.i18n.prop('are_you_sure_cancel_order'))){
 		checkLogin(accountName, permission).then(res=>{
 
 			bidnameContract.then(obj => {
 				console.log('accountName:',accountName,'--seller--',seller)
 				obj.cancelorder(accountName, seller, options).then(val=>{
 				console.log(val) 
-				alert('撤销订单成功！')
+				alert($.i18n.prop('cancel_order_success'))
 				},err =>{
 
 					if(typeof err == 'object'){
 		      			if(err.type === 'signature_rejected'){
-		      				alert('您拒绝了“卖家撤单”，撤单失败')
+		      				alert($.i18n.prop('reject_seller_revoke_failed'))
 			      		}else{
-			      			alert(`【卖家撤单失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+			      			alert($.i18n.prop('seller_revoke_failed' , code, err.message))
 			      		}
 		      		}else{
 			      		const errObj	=	JSON.parse(err);
 				      	const code 		=	errObj.error.code;
-				      	alert(`【卖家撤单失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+				      	alert($.i18n.prop('seller_revoke_failed_detail', code, errObj.error.what, errObj.error.details[0].message))
 				      	
 						
 						console.log(errObj.error.what)
@@ -945,7 +907,7 @@ $('.left-container').on('click','.buyerRevoke',function(){
 	};
 
 
-	if(window.confirm(`您真的要撤销该订单吗？`)){
+	if(window.confirm($.i18n.prop('are_you_sure_cancel_order'))){
 
 		checkLogin(buyer, permission).then(res=>{
 
@@ -953,18 +915,18 @@ $('.left-container').on('click','.buyerRevoke',function(){
 				console.log('accountName:',accountName,'--buyer:',buyer,'--seller:',seller)
 				obj.cancelplace(accountName, buyer, seller, options).then(val=>{
 					console.log(val) 
-					alert('撤销订单成功')
+					alert($.i18n.prop('cancel_order_success'))
 				},err =>{
 					if(typeof err == 'object'){
 		      			if(err.type === 'signature_rejected'){
-		      				alert('您拒绝了“买家撤单”，撤单失败')
+		      				alert($.i18n.prop('reject_buyer_revoke_failed'))
 			      		}else{
-			      			alert(`【买家撤单失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+			      			alert($.i18n.prop('buyer_revoke_failed', err.code, err.message))
 			      		}
 		      		}else{
 			      		const errObj	=	JSON.parse(err);
 				      	const code 		=	errObj.error.code;
-				      	alert(`【买家撤单失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+				      	alert($.i18n.prop('buyer_revoke_failed_detail', code, errObj.error.what, errObj.error.details[0].message) )
 				      	
 						
 						console.log(errObj.error.what)
@@ -1030,12 +992,12 @@ $('.left-container').on('click','.transferName', async function(){
 
    		if(!isAlreadyAssign){
    			try{
-	   			const isAllowAssign = await window.confirm(`本操作需要您的此账户（${accountName}）赋给本合约Code权限，是否继续（您在操作完成后可随时点击右侧红色按钮取消授权）？`)
+	   			const isAllowAssign = await window.confirm($.i18n.prop('need_code_permission', accountName))
 	   			if(isAllowAssign){
 	   				await assignOrCancelCodePer(accountName, 'assign', permission, input_eosaccount) 
 	   				await getFormatAccountInfo({'name':accountName, 'authority':permission})
 	   			}else{
-	   				alert('您拒绝了授权本合约Code权限，操作结束')
+	   				alert($.i18n.prop('you_reject_auth_stop'))
 	   				return false;
 	   			}
 
@@ -1048,19 +1010,19 @@ $('.left-container').on('click','.transferName', async function(){
    		bidnameContract.then(obj => {
 			obj.accrelease(seller, accountName, buyer, options).then(val=>{
 			console.log(val) 
-			alert('恭喜，过户成功')
+			alert($.i18n.prop('tranfer_name_success'))
 			},err =>{
 
 				if(typeof err == 'object'){
 	      			if(err.type === 'signature_rejected'){
-	      				alert('您拒绝了“过户”，过户失败')
+	      				alert($.i18n.prop('reject_transfer_name_fail'))
 		      		}else{
-		      			alert(`【过户失败】\n错误代码：${err.code}\n错误描述：${err.message}\n`)
+		      			alert($.i18n.prop('transfer_name_failed_detail', err.code, err.message))
 		      		}
 	      		}else{
 		      		const errObj	=	JSON.parse(err);
 			      	const code 		=	errObj.error.code;
-			      	alert(`【过户失败】 \n错误代码：${code}\n错误描述：${errObj.error.what}\n错误原因：${errObj.error.details[0].message}`)
+			      	alert($.i18n.prop('transfer_name_failed_detail_kind2', code, errObj.error.what, errObj.error.details[0].message))
 			      	
 					
 					console.log(errObj.error.what)

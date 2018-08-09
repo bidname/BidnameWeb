@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
     <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./i18n/jquery.i18n.properties.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"
@@ -16,6 +17,7 @@
     crossorigin="anonymous"></script>
     <script src="./js/custom.js"></script>
     <script src="./js/interaction.js"></script>
+
 
 
 </head>
@@ -36,11 +38,11 @@
 
 		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html">首页</a></li>
-	        <li><a href="sell.html">挂单</a></li>
-	        <li><a href="my_orders.html">我的订单</a></li>
-	        <li><a href="help.html">帮助</a></li>
-	        <li><a href="about-us.html">关于我们</a></li>
+	        <li><a href="index.html" class='i18n' fy='home_page'>首页</a></li>
+	        <li><a href="sell.html" class='i18n' fy='put_order'>挂单</a></li>
+	        <li><a href="my_orders.html" class='i18n' fy='my_orders'>我的订单</a></li>
+	        <li><a href="help.html" class='i18n' fy='help'>帮助</a></li>
+	        <li><a href="about-us.html" class='i18n' fy='about_us'>关于我们</a></li>
 
 	      </ul>
 
@@ -56,7 +58,7 @@
 
       	<form class="navbar-form navbar-right" action="search.html" method="get">
 	        <div class="form-group">
-	          <input type="text" name="acc" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	          <input type="text" name="acc" class="form-control search-input i18n"  fy='input_account' placeholder="输入交易账户名或收款账户名">
 	        </div>
 
       	</form>
@@ -73,30 +75,30 @@
 		<div class="row scatter-warning">
 			<div class="alert alert-danger alert-dismissable" role="alert">
 				<button class="close" type="button" data-dismiss="alert">&times;</button>
-				请先安装<a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank">Scatter插件</a>
+				<span class ='i18n' fy='install_first'>请先安装</span><a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank" class ='i18n' fy='scatter_extension'>Scatter插件</a>
 			</div>
 		</div>
 
 		<div class="row">
-			<ol class="breadcrumb"><li>首页</li><li>我的订单（不包含已完成订单）</li></ol>
+			<ol class="breadcrumb i18n" fy='home_page'><li>首页</li><li class="i18n" fy='my_orders_not_include'>我的订单（不包含已完成订单）</li></ol>
 		</div>
 
 		<div class="row">
 			<div class="col-md-8 left-container">
-				<div class='tips_login'>登陆Scatter后方能查看您的订单信息</div>
+				<div class='tips_login i18n' fy='login_to_get_orders' >登陆Scatter后方能查看您的订单信息</div>
 				<div class="row search-title first-kind" >
-					<b>收款账户名相关订单信息</b>
+					<b class='i18n' fy='recep_acc_detail'>收款账户名相关订单信息</b>
 				</div>
 
 				<div class="row first-kind" >
 					<table class="table table-striped table-hover" id="search-null">
 						<thead>
 					     	<tr>
-						       <th>账户名</th>
-						       <th>价格（EOS）</th>
-						       <th>广告费（EOS）</th>
-						       <th>创建时间</th>
-						       <th>操作</th>
+						       <th class ='i18n' fy='account_name'>账户名</th>
+						       <th class ='i18n' fy='price'>价格（EOS）</th>
+						       <th class ='i18n' fy='ad_fee'>广告费（EOS）</th>
+						       <th class ='i18n' fy='create_time'>创建时间</th>
+						       <th class ='i18n' fy='actions'>操作</th>
 					     	</tr>
 					    </thead>
 
@@ -113,7 +115,7 @@
 				</div>
 
 				<div class="row search-title second-kind">
-						<b>已挂单账户订单信息</b>
+						<b class='i18n' fy='sell_acc_detail'>已挂单账户订单信息</b>
 					</div>
 
 				<div class="row second-kind">
@@ -122,7 +124,7 @@
 
 					<div class="row sell-search">
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='acc_name'>
 								账号名
 							</div>
 
@@ -130,7 +132,7 @@
 								<b class="sell-search-detail acc-name"></b>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='price'>
 								价格（EOS）
 							</div>
 
@@ -140,7 +142,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='ad_fee'>
 								广告费（EOS）
 							</div>
 
@@ -148,7 +150,7 @@
 								<b class="sell-search-detail ad-fee"></b>
 							</div>
 
-							<div class="col-md-2">
+							<div class="col-md-2 i18n" fy='create_time'>
 								创建时间
 							</div>
 
@@ -163,7 +165,7 @@
 
 						<div class="row sell-search-button-list">
 							<div class="col-md-12">
-								<button class="btn btn-primary btn-lg">查询中……</button>
+								<button class="btn btn-primary btn-lg i18n" fy='query'>查询中……</button>
 							</div>							
 							
 						</div>
