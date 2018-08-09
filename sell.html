@@ -5,17 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>挂单</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
     <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./i18n/jquery.i18n.properties.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"
     integrity="sha512-vNyLnOEb7uFmEtVbLnyZQ9/k4zckM2Vu3jJOKq6XfWEVZG0yKcjDExVN4EQ7e3F+rePWRncMolI2xFi/3qo62A=="
     crossorigin="anonymous"></script>
     <script src="./js/custom.js"></script>
-	<script src="./js/interaction.js"></script>
+    <script src="./js/interaction.js"></script>
 
 
 </head>
@@ -36,27 +37,27 @@
 
 		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html">首页</a></li>
-	        <li><a href="sell.html">挂单</a></li>
-	        <li><a href="my_orders.html">我的订单</a></li>
-	        <li><a href="help.html">帮助</a></li>
-	        <li><a href="about-us.html">关于我们</a></li>
+	        <li><a href="index.html" class='i18n' fy='home_page'>首页</a></li>
+	        <li><a href="sell.html" class='i18n' fy='put_order'>挂单</a></li>
+	        <li><a href="my_orders.html" class='i18n' fy='my_orders'>我的订单</a></li>
+	        <li><a href="help.html" class='i18n' fy='help'>帮助</a></li>
+	        <li><a href="about-us.html" class='i18n' fy='about_us'>关于我们</a></li>
 
 	      </ul>
 
-	    <ul class="nav navbar-nav navbar-right">
+	    <ul class="nav navbar-nav navbar-right lan-change">
 	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language fa-lg"></i> 简体中文 <span class="caret"></span></a>
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="##" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-language fa-lg"></i><span class=' tran-title'> 简体中文</span> <span class="caret"></span></a>
 		        <ul class="dropdown-menu">
-	      			<li><a >简体中文</a></li>
-	      			<li><a>ENGLISH</a></li>
+	      			<li lan='zh'><a >简体中文</a></li>
+	      			<li lan='en'><a>ENGLISH</a></li>
 	      		</ul>
 	        </li>
         </ul>
 
-      	<form class="navbar-form navbar-right">
+      	<form class="navbar-form navbar-right" method='get' action='search.html'>
 	        <div class="form-group">
-	          <input type="text" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	          <input type="text" name="acc" class="form-control search-input i18n"  fy='input_account' placeholder="输入交易账户名或收款账户名">
 	        </div>
 
       	</form>
@@ -74,12 +75,12 @@
 		<div class="row scatter-warning">
 			<div class="alert alert-danger alert-dismissable" role="alert">
 				<button class="close" type="button" data-dismiss="alert">&times;</button>
-				请先安装<a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank">Scatter插件</a>
+				<span class ='i18n' fy='install_first'>请先安装</span><a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank" class ='i18n' fy='scatter_extension'>Scatter插件</a>
 			</div>
 		</div>
 
 		<div class="row">
-			<ol class="breadcrumb"><li>首页</li><li>挂单</li></ol>
+			<ol class="breadcrumb"><li  class ='i18n' fy='home_page'>首页</li><li class='i18n' fy='put_order'>挂单</li></ol>
 		</div>
 
 		
@@ -91,8 +92,8 @@
 					<div class="row tips">
 						<div class="col-md-12 text-left">
 							<dl>
-								<dt>发布挂单信息</dt>
-								<dd>挂单信息需要用户填写卖出的账号名，收款账号名以及广告费。其中广告费随用户输入，首页中的挂单列表将根据用户支付的广告费的多少来排序显示</dd>
+								<dt class ='i18n' fy='publish_order_info'>发布挂单信息</dt>
+								<dd class ='i18n' fy='explain_seller_acc'>挂单信息需要用户填写卖出的账号名，收款账号名以及广告费。其中广告费随用户输入，首页中的挂单列表将根据用户支付的广告费的多少来排序显示</dd>
 							</dl>
 						</div>
 					</div>
@@ -100,10 +101,10 @@
 
 					<div class="row step1 ">
 						<div class="col-md-12 outer-step">
-							<div class="col-md-3 step-title">卖出账号名</div>
+							<div class="col-md-3 step-title i18n" fy='seller_acc'>卖出账号名</div>
 							<div class="col-md-9">
-								<input class="form-control" id="sell-acc-name" type="text" placeholder="卖出账号，您登陆Scatter后将自动填入" disabled="disabled">
-								<span class="help-block">请确保您拥有此账户的owner权限，并且在scatter中配置了此账户的私钥</span>
+								<input class="form-control i18n" id="sell-acc-name" fy='after_login_auto_input' type="text" placeholder="卖出账号，您登陆Scatter后将自动填入" disabled="disabled">
+								<span class="help-block i18n" fy='must_be_owner'>请确保您拥有此账户的owner权限，并且在scatter中配置了此账户的私钥</span>
 							</div>
 						</div>
 					</div>
@@ -111,10 +112,10 @@
 
 					<div class="row step2 ">
 						<div class="col-md-12 outer-step">
-							<div class="col-md-3 step-title">收款账号名</div>
+							<div class="col-md-3 step-title i18n" fy='receipt_acc'>收款账号名</div>
 							<div class="col-md-9">
-								<input class="form-control" id="receipt-acc-name" type="text" placeholder="收款账号">
-								<span class="help-block">请确保您拥有此账户的active权限，并且在scatter中配置了此账户的私钥</span>
+								<input class="form-control i18n" fy='receipt_acc' id="receipt-acc-name" type="text" placeholder="收款账号">
+								<span class="help-block i18n" fy='must_active'>请确保您拥有此账户的active权限，并且在scatter中配置了此账户的私钥</span>
 							</div>
 						</div>
 					</div>
@@ -122,15 +123,15 @@
 
 					<div class="row step3 ">
 						<div class="col-md-12 outer-step">
-							<div class="col-md-3 step-title">卖出价格</div>
+							<div class="col-md-3 step-title i18n" fy='sell_price'>卖出价格</div>
 							<div class="col-md-9">
 								<div class='input-group'>
-									<input class="form-control" id="sell-price" type="text" onkeyup="clearNoNum(this)" onafterpaste="if(isNaN(value))execCommand('undo')" placeholder="标价不得少于 0.1000 EOS，输入数值部分">
+									<input class="form-control i18n" fy='sell_price_format' id="sell-price" type="text" onkeyup="clearNoNum(this)" onafterpaste="if(isNaN(value))execCommand('undo')" placeholder="标价不得少于 0.1000 EOS，输入数值部分">
 									<span class="input-group-addon">
 	                                    EOS
 	                                </span>
                             	</div>
-								<span class="help-block">买家将根据您在此处设置的价格来完成支付，您的收款账户将收到这笔付款</span>
+								<span class="help-block i18n" fy='sell_price_tips'>买家将根据您在此处设置的价格来完成支付，您的收款账户将收到这笔付款</span>
 							</div>
 						</div>
 					</div>
@@ -138,22 +139,22 @@
 
 					<div class="row step4 ">
 						<div class="col-md-12 outer-step">
-							<div class="col-md-3 step-title">广告费</div>
+							<div class="col-md-3 step-title i18n" fy='adfee'>广告费</div>
 							<div class="col-md-9">
 								<div class='input-group'>
-									<input class="form-control" id="ad-fee" type="text" onkeyup="clearNoNum(this)" onafterpaste="if(isNaN(value))execCommand('undo')" placeholder="广告费不得少于 0.1000 EOS，输入数值部分">
+									<input class="form-control i18n" fy='adfee_format' id="ad-fee" type="text" onkeyup="clearNoNum(this)" onafterpaste="if(isNaN(value))execCommand('undo')" placeholder="广告费不得少于 0.1000 EOS，输入数值部分">
 									<span class="input-group-addon">
 	                                    EOS
 	                                </span>
                             	</div>
-								<span class="help-block">首页交易列表中将根据您设置的广告费来完成排序</span>
+								<span class="help-block i18n" fy='adfee_tips'>首页交易列表中将根据您设置的广告费来完成排序</span>
 							</div>
 						</div>
 					</div>
 
 					<div class="row step5 ">
 						<div class="col-md-12 text-right">
-							<button id="acc-publish" class="btn btn-success btn-lg" href="#">挂单发布</button>
+							<button id="acc-publish" class="btn btn-success btn-lg i18n" fy='put_order' href="#">挂单发布</button>
 						</div>	
 					</div>
 				</div>
@@ -165,9 +166,9 @@
 				
 				<div class="panel panel-info account-panel">
 					
-					<div class="panel-heading"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i> Scatter当前登录账户</div>
+					<div class="panel-heading"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i> <span class ='i18n' fy='scatter_current_login'>Scatter当前登录账户</span></div>
 					<div class="panel-body">
-						<button type="button" class="btn btn-warning btn-lg col-md-12 login-button">登录Scatter</button>
+						<button type="button" class="btn btn-warning btn-lg col-md-12 login-button i18n" fy='login_scatter'>登录Scatter</button>
 							
 					</div>
 					<ul class="list-group" id='account-info'>
@@ -179,7 +180,7 @@
 
 
 				<div class="panel panel-default">
-					<div class="panel-heading"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i> 常见问题</div>
+					<div class="panel-heading"><i class="fa fa-question-circle-o fa-lg" aria-hidden="true"></i><span class='i18n' fy='faq'> 常见问题</span></div>
 					<ul class="list-group">
 						<li class="list-group-item"><a href="">出售账号名（挂单）需要提供什么</a></li>
 						<li class="list-group-item"><a href="">购买账号名操作流程</a></li>
@@ -194,7 +195,7 @@
 				</div>
 
 			
-				</div>
+			</div>
 				<!-- right end-->
 
 

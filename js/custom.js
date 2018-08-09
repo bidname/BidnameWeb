@@ -49,6 +49,12 @@ jQuery(document).ready(function() {
 });
 		
 function loadBundles(lang) {
+	if(lang === 'en'){
+		$('.tran-title').text(' ENGLISH ')
+	}else{
+		$('.tran-title').text(' 简体中文 ')
+	}
+
 	jQuery.i18n.properties({
 	    name:'Messages', 
 	    path:'./i18n/bundle/', 
