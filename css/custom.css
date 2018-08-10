@@ -60,3 +60,6 @@ body{background: #fbfbfb;}
 .scatter-warning{display: none;}
 .dropdown-menu li{cursor:pointer;}
 .tips_login{display: none;}
+.footer .fa{margin-right: 0.3rem;}
+.panel-default .fa{margin-right: 0.3rem;}
+html{display: none;}

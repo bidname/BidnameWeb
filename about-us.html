@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>关于我们</title>
+    <title fy='about_us'>关于我们</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/custom.css">
-    <script src="./js/jquery-1.9.1.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
+
+
+
 
 </head>
-<body>
+<body id="my-orders">
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -29,10 +30,11 @@
 
 		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html">首页</a></li>
-	        <li><a href="sell.html">挂单</a></li>
-	        <li><a href="help.html">帮助</a></li>
-	        <li><a href="about-us.html">关于我们</a></li>
+	        <li><a href="index.html" >Bidname Exchange</a></li>
+	        <li><a href="sell.html" class='i18n' fy='put_order'>挂单</a></li>
+	        <li><a href="my_orders.html" class='i18n' fy='my_orders'>我的订单</a></li>
+	        <li><a href="help.html" class='i18n' fy='help'>帮助</a></li>
+	        <li><a href="about-us.html" class='i18n' fy='about_us'>关于我们</a></li>
 
 	      </ul>
 
@@ -46,9 +48,9 @@
 	        </li>
         </ul>
 
-      	<form class="navbar-form navbar-right">
+      	<form class="navbar-form navbar-right" action="search.html" method="get">
 	        <div class="form-group">
-	          <input type="text" class="form-control search-input" placeholder="输入交易账户名或收款账户名">
+	          <input type="text" name="acc" class="form-control search-input i18n"  fy='input_account' placeholder="输入交易账户名或收款账户名">
 	        </div>
 
       	</form>
@@ -62,8 +64,29 @@
 <!-- main -->
 <div id="main">
 	<div class="container">
-		
-	</div>
+		<div class="row scatter-warning">
+			<div class="alert alert-danger alert-dismissable" role="alert">
+				<button class="close" type="button" data-dismiss="alert">&times;</button>
+				<span class ='i18n' fy='install_first'>请先安装</span><a href='https://github.com/GetScatter/ScatterWebExtension' target="_blank" class ='i18n' fy='scatter_extension'>Scatter插件</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<ol class='breadcrumb'><li class=" i18n" fy='home_page'>首页</li><li class="i18n" fy='about_us'>关于我们</li></ol>
+		</div>
+
+
+
+
+
+		</div><!-- /list end -->
+
+
+
+
+
+
+	
 </div>
 <!-- main end -->
 
@@ -76,26 +99,24 @@
 				
 				<dl>
 					<dt>Bidname</dt>
-					<dd style="width:23rem;">Bidname 是一个提供区块链场外交易(OTC)和币币交易的平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</dd>
-					<dd><br /></dd>
-					<dd>Copyright@2018 Lvyii</dd>
+					<dd style="width:23rem;"  class='i18n' fy='brief'>Bidname 是一个提供区块链场外交易(OTC)和币币交易的平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</dd>
 				</dl>
 			</div>
 
 			<div class="col-md-4 col-sm-4">
 				<dl>
-					<dt>联系我们</dt>
-					<dd><i class="fa fa-telegram"></i> telegram</dd>
-					<dd><i class="fa fa-wechat"></i> 微信</dd>
-					<dd><i class="fa fa-qq"></i> QQ群</dd>
-					<dd><i class="fa fa-envelope"></i> 邮箱</dd>
-					<dd><i class="fa fa-envelope"></i> 商务合作</dd>
+					<dt class='i18n' fy='cantact_us'>联系我们</dt>
+					<dd><i class="fa fa-telegram" ></i>telegram</dd>
+					<dd><i class="fa fa-wechat" ></i><span class='i18n' fy='wechat'> 微信</span></dd>
+					<dd><i class="fa fa-qq" ></i><span class='i18n' fy='qq'> QQ群</span></dd>
+					<dd><i class="fa fa-envelope" ></i><span class='i18n' fy='email'>  邮箱</span></dd>
+					<dd><i class="fa fa-envelope" ></i><span class='i18n' fy='cooperation'>  商务合作</span></dd>
 				</dl>
 			</div>
 
 			<div class="col-md-2 col-sm-4">
 				<dl>
-					<dt>友情链接</dt>
+					<dt class='i18n' fy='friend_links'>友情链接</dt>
 					<dd><a href="">eosfans</a></dd>
 					<dd><a href="">eos90s</a></dd>
 					<dd><a href="">eosmonitor</a></dd>
@@ -106,10 +127,49 @@
 </div>
 <!-- footer end-->
 
+<!-- 模态弹出窗内容 -->
+<div class="modal" id="buy-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">购买</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="row mess" >
+            		<div class="col-md-6">购买账户名：<b id="account-name"></b></div>
+            		<div class="col-md-6">价格：<b id="account-price"></b></div>
+            	</div>
+            	<div class="row">
+            		<input type="hidden" name="order-id">
+            		<input type="hidden" name="buyer-acc-name" class="form-control buyer-acc-name" >
+            		<input type="text" name="public-key" class="form-control pub-key" placeholder="请输入新的公钥">
+            		<span class="help-block">请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
+            	</div>
+            	<div class="row">
+            		<div class="text-right">不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" target="_blank">点击此处获取工具</a></div>
+            	</div>
+                <p><button class='btn btn-primary btn-lg' id="sub">确认购买</button></p>
+            </div>
 
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script>
     
 </script>
 </body>
+
+
+ <script src="./js/jquery-1.9.1.min.js"></script>
+<script src="./js/jquery.cookie.js"></script>
+<script src="./i18n/jquery.i18n.properties.js"></script>
+<script src="./js/custom.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.0/lib/eos.min.js"
+integrity="sha512-vNyLnOEb7uFmEtVbLnyZQ9/k4zckM2Vu3jJOKq6XfWEVZG0yKcjDExVN4EQ7e3F+rePWRncMolI2xFi/3qo62A=="
+crossorigin="anonymous"></script>
+<script src="./js/interaction.js"></script>
+
 </html>

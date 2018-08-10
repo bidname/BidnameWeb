@@ -1,10 +1,11 @@
 jQuery(document).ready(function() {
+
 	$.cookie('curr_lan') ? loadBundles($.cookie('curr_lan')) : loadBundles('zh');
 			
 	// configure language combo box
 	jQuery('#lang').change(function() {
 		// alert('123');
-		var selection = jQuery('#lang option:selected').val();
+		let selection = jQuery('#lang option:selected').val();
 		console.log(selection);
 		loadBundles(selection != 'browser' ? selection : null);
 		jQuery('#langBrowser').empty();
@@ -68,13 +69,23 @@ function loadBundles(lang) {
 		
 function updateExamples() {
 
-		var insertEle = $(".i18n");
+		let insertEle = $(".i18n");
         console.log(".i18n 写入中...");
         insertEle.each(function() {
             // 根据i18n元素的 name 获取内容写入
-            console.log($(this).attr('fy'))
-            $(this).html($.i18n.prop($(this).attr('fy')));
+            if($(this).attr('placeholder')){
+            	$(this).attr('placeholder', $.i18n.prop($(this).attr('fy')))
+            }else{
+            	console.log($(this).attr('fy'))
+            	$(this).html($.i18n.prop($(this).attr('fy')));
+            }
+            
         });
+        $('html').show()
+        if($('title').attr('fy')){
+        	 $('title').text($.i18n.prop($('title').attr('fy')))
+        }
+       
         console.log("写入完毕");
 }
 
