@@ -30,7 +30,7 @@
 
 		<div class="collapse navbar-collapse" id="my-navbar-dropdown">
 	      <ul class="nav navbar-nav">
-	        <li><a href="index.html" >Bidname Exchange</a></li>
+	        <li><a href="index.html" class='i18n' fy='home_page'>首页</a></li>
 	        <li><a href="sell.html" class='i18n' fy='put_order'>挂单</a></li>
 	        <li><a href="my_orders.html" class='i18n' fy='my_orders'>我的订单</a></li>
 	        <li><a href="help.html" class='i18n' fy='help'>帮助</a></li>
@@ -264,23 +264,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">购买</h4>
+                <h4 class="modal-title i18n" fy='place_order'>购买下单</h4>
             </div>
             <div class="modal-body">
             	<div class="row mess" >
-            		<div class="col-md-6">购买账户名：<b id="account-name"></b></div>
-            		<div class="col-md-6">价格：<b id="account-price"></b></div>
+            		<div class="col-md-6"><span class="i18n" fy='buyer_account_name'>购买账户名：</span><b id="account-name"></b></div>
+            		<div class="col-md-6"><span class="i18n" fy='price'>价格：</span><b id="account-price"></b></div>
             	</div>
             	<div class="row">
             		<input type="hidden" name="order-id">
             		<input type="hidden" name="buyer-acc-name" class="form-control buyer-acc-name" >
             		<input type="text" name="public-key" class="form-control pub-key" placeholder="请输入新的公钥">
-            		<span class="help-block">请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
+            		<span class="help-block i18n" fy='publick_key_tips'>请务必生成一对秘钥且保管好私钥信息，将新生成的公钥填写在此输入框中，用户未保管好自己的私钥造成的财产损失本平台概不负责！</span>
             	</div>
             	<div class="row">
-            		<div class="text-right">不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" target="_blank">点击此处获取工具</a></div>
+            		<div class="text-right i18n" fy='how_to_generate_public_key'>不知道如何生成密钥对？<a href="https://nadejde.github.io/eos-token-sale/" class='i18n' fy='click_here_to_generate' target="_blank">点击此处获取工具</a></div>
             	</div>
-                <p><button class='btn btn-primary btn-lg' id="sub">确认购买</button></p>
+                <p><button class='btn btn-primary btn-lg i18n' fy='confirm_purchase' id="sub">确认购买</button></p>
             </div>
 
         </div><!-- /.modal-content -->
