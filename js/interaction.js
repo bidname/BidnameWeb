@@ -780,6 +780,8 @@ $('#sub').click(async function(){
    		bidnameContract.then(obj => {
 			obj.placeorder(accountName, buyerAccName, publicKey,options).then(val=>{
 			console.log(val) 
+			$('#buy-modal').hide()
+			showListFun((homeCurPageNum - 1) * perPage)
 			alert($.i18n.prop('purchase_success_info'))
 			},err =>{
 
