@@ -63,3 +63,11 @@ body{background: #fbfbfb;}
 .footer .fa{margin-right: 0.3rem;}
 .panel-default .fa{margin-right: 0.3rem;}
 html{display: none;}
+#about-us h2,#help h2{border-bottom: 1px solid #DDD;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;}
+.what-is-bid,#about-us .tbd{    margin-bottom: 4rem;}
+#how-to-use h2{margin: 5rem 0 2rem;border-bottom: 1px solid #DDD;padding-bottom: 0.8rem}
+#how-to-use h3{margin-top: 4rem;}
+#h2-comm-pro h2{margin-top:4rem;}
+#h2-comm-pro h4,#how-to-use h4{margin: 4rem 0 1rem;}

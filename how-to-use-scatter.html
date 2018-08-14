@@ -13,7 +13,7 @@
 
 
 </head>
-<body id="about-us">
+<body id="how-to-use">
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -72,30 +72,72 @@
 		</div>
 
 		<div class="row">
-			<ol class='breadcrumb'><li ><a href='index.html'  class ='i18n' fy='home_page'>首页</a></li><li class="i18n" fy='about_us'>关于我们</li></ol>
+			<ol class='breadcrumb'><li><a href='index.html'  class ='i18n' fy='home_page'>首页</a></li><li><a href='help.html' class="i18n" fy='help'> 帮助</a></li> <li>如何使用Scatter</li></ol>
 		</div>
 
+		<div class='row'>
+			<h1>如何安装使用Scatter</h1>
 
-		<div class="row">
-			<h2>关于我们</h2>
+			<blockquote><p>英文版请参考：<a href='https://www.myeoskit.com/#/guides/how-to-set-up-scatter'>https://www.myeoskit.com/#/guides/how-to-set-up-scatter</a></p></blockquote>
 
-			<h3>关于Bidname</h3>
+			<h2>Scatter是什么？</h2>
 
-			<p class='what-is-bid'>Bidname是一个专注于区块链账号（EOS账号、ENS等）的虚拟资产交易平台，我们致力于让区块链资产更有效的流动，让更多人可以参与到区块链行业中来。</p>
+			<p>Scatter是一个浏览器扩展插件，允许你为EOS等区块链签署交易，并向Web应用程序提供个人信息，而无需暴露密钥或填写表单。</p>
 
-			<h2>联系我们</h2>
+			<p>——<a href="https://github.com/GetScatter/ScatterWebExtension">Scatter Github</a></p>
 
-			<ul class='tbd'>
-				<li>Github: <a href='https://github.com/bidname'>https://github.com/bidname</a></li>
-				<li>微信：<img alt="" src="https://ws2.sinaimg.cn/large/006tNbRwgy1fu5tvnweuej30by0byt9i.jpg"/></li>
-				<li>Telegram: <a href='https://t.me/joinchat/Hxf78xKZDUh6WkjrvPUvjg'>https://t.me/joinchat/Hxf78xKZDUh6WkjrvPUvjg</a></li>
-				<li>email: <a href=mailto:hi@lvyii.com> hi@lvyii.com</a></li>
-			</ul>
+			<h2>安装Scatter</h2>
 
-			<h2>友情链接</h2>
+			<h4> 第一步：下载Scatter</h4> 
 
-			<ul><li><a href="https://eosmeta.io/">eosmeta</a></li><li><a href="http://www.eos90s.io/">eos90s</a></li><li><a href="https://www.myeoskit.com/#/vote">myeoskit.com</a></li><li><a href="https://eosflare.io/">eosflare.io</a></li><li><a href="https://eosauthority.com/">eos authrity</a></li><li><a href="https://meet.one/">meetOne</a></li></ul>
+			<p>访问 <a href="https://get-scatter.com/">get-scatter.com</a> or <a href="https://scatter-eos.com/">scatter-eos.com</a>，并下载chrome浏览器插件：</p>
+
+			<p class='row'><img class='img-responsive center-block' alt="" src="https://ws4.sinaimg.cn/large/006tNbRwgy1fu5kh9vs22j31kw0txahj.jpg"/></p>
+
+			<h4> 第二步：验证Scatter</h4> 
+
+			<p>通过chrome浏览器的开发者选项信息验证Scatter。<strong>确保你使用的是官方版本</strong>：</p>
+
+			<ul><li>在浏览器地址输入<em>chrome://extensions/</em></li><li>打开右上角的<strong>开发者模式</strong></li><li>验证Scatter的ID: <strong>ammjpmhgckkpcamddpolhchgomcojkle</strong></li></ul>
+
+			<p class='row'><img  class='img-responsive center-block' alt="" src="https://cdn.steemitimages.com/DQmNghZ3q73ATZmqCtDPqZKPEimSdqb6jpuP37qgf1qmnRH/img2.png"/></p>
+
+			<h4> 第三步：创建Scatter账户</h4> 
+
+			<p>单击Chrome插件部分中的Scatter图标。 创建将用于访问你的帐户的密码，然后单击“Create New Scatter”。</p>
+
+			<p>在此步骤之后，立即记下助记词并将其存储在安全的地方。 在账号意外丢失或被盗的情况下可以通过助记词找回。</p>
+
+			<blockquote><p>⚠️: 如果你觉得使用Scatter感觉不舒服，你也可以使用其他方法，比如cleos命令行工具。 Scatter目前是我们建议的工具之一，因为我们已经验证了它，而且我们知道创始人。</p></blockquote>
+
+			<h2>创建EOS密钥对和Scatter身份信息</h2>
+
+			<h4> 第一步：创建EOS密钥对</h4> 
+
+			<p>在Chrome中打开并解锁Scatter插件。 打开“Key Pairs”菜单，然后单击“<strong>Create a New Key Pair</strong>”。 在下一个屏幕中，单击“ <strong>Generate Key Pair</strong>”。 生成密钥后，您应该复制并保存私钥和公钥。</p>
+
+			<p class='row'><img  class='' alt="generate-keys.png" src="https://www.myeoskit.com/images/guides/generate-key-pair.jpg"/> 
+				<img class=' '  alt="copy-keys.png" src="https://www.myeoskit.com/images/guides/copy-keys.jpg"/></p>
+
+			<blockquote><p>⚠️：密钥对是在你的计算机上本地生成的。 如果未保存，你将无法访问自己的帐户。 你将无法从Scatter中取出钥匙。 所以存储和保护你的钥匙！</p></blockquote>
+
+			<h4> 第二步：将Scatter身份信息关联至Bidname(EOS Mainnet)</h4> 
+
+			<ul><li>打开<a href="http://www.bidname.io/">bidname.io</a>，点击<strong>登陆Scatter</strong></li></ul>
+
+			<p class='row'><img alt=""  class='img-responsive center-block' src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu5khn6dx7j31kw0x8108.jpg"/></p>
+
+			<ul><li>同意身份认证请求</li></ul>
+
+			<p class='row'><img alt="" class='img-responsive center-block'  src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu5khfbaz7j31kw0hkjw1.jpg"/></p>
+
+			<p>如果你还没有创建身份信息，请参考下面操作：</p>
+
+			<p class='row'><img  class='img-responsive center-block' alt="import.png" src="https://ws3.sinaimg.cn/large/006tNbRwgy1fu90aaqtndg30a20gttm5.gif"/></p>
+
+			<ul><li>打开Scatter插件，点击<strong>Identities</strong></li><li>可以选择编辑默认身份，或者创建一个新的身份</li><li>编辑身份信息的Account栏，请选择EOS Mainnet 主网。主网的ID:eos:chain:aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906</li><li>同样在Account栏，单击“<strong>None</strong>”以选择密钥对，然后单击“<strong>Import</strong>”。 Scatter现在将尝试查找与您选择的密钥对的公钥关联的EOS帐户。</li><li>找到您的帐户后，您需要选择用于签署交易的权限。 </li><li>完成后，请记住单击Scatter菜单右上角的Save。恭喜！ 您刚刚在Scatter身份上设置了EOS帐户。</li></ul>
 		</div>
+
 
 
 		</div><!-- /list end -->
