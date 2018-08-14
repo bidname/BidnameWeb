@@ -71,3 +71,7 @@ html{display: none;}
 #how-to-use h3{margin-top: 4rem;}
 #h2-comm-pro h2{margin-top:4rem;}
 #h2-comm-pro h4,#how-to-use h4{margin: 4rem 0 1rem;}
+#wechatShow{position: relative;}
+#wechatShow img{position: absolute;left: 4rem;bottom: 2rem;display: none;z-index: 999;}
+.footer .fa.fa-telegram{margin-right: 0.5rem;}
+.footer .fa.fa-wechat{margin-right: 0.4rem;}

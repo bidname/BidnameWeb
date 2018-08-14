@@ -599,6 +599,12 @@ $(document).ready(function(){
 	   	homeCurPageNum++;
 	})
 
+	$('#wechatShow span').hover(function(){
+		$('#wechatShow img').show()
+	},function(){
+		$('#wechatShow img').hide()
+	})
+
 })
 
 
