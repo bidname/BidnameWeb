@@ -10,7 +10,7 @@ body{background: #fbfbfb;}
 .click-button{text-align: center;padding: 1rem;background: #eaeaea;     margin-bottom: 2rem;}
 .tips{text-align: center;background: #f3a011;color:white;    padding: 2rem;    margin-bottom: 3rem;}
 .tips{color:black;background: #e8e8e8;}
-.sell-page .tips,.sell-page {margin-bottom: 1rem;}
+.sell-page .tips,.sell-page {margin:0}
 .sell-page .tips dt{margin-bottom: 0.7rem;}
 .sell-page .steps .help-block {color:#ff990d;}
 .step-title,.search-title{border-left:4px solid #25a210;}
@@ -75,3 +75,4 @@ html{display: none;}
 #wechatShow img{position: absolute;left: 4rem;bottom: 2rem;display: none;z-index: 999;}
 .footer .fa.fa-telegram{margin-right: 0.5rem;}
 .footer .fa.fa-wechat{margin-right: 0.4rem;}
+.footer-github{display: none;}
