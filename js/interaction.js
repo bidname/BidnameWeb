@@ -23,7 +23,7 @@ const	network = {
 
 const	codeName	=	'bidnamefirst';
 const	scope 		=	'bidnamefirst';
-const	reqListUrl	=	'http://139.196.84.116:3000/';
+const	reqListUrl	=	'https://139.196.84.116:3000/';
 let 	homeCurPageNum =	1;
 const 	perPage		=	20;
 //eos 与 scatter 是两个全局变量
